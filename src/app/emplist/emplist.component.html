@@ -1,0 +1,21 @@
+<div>
+    <h3> Hi {{username}} </h3>
+<p>List of Employees</p>
+
+<table class="table">
+<tr>
+<th> Eid </th>
+<th> Ename </th>
+<th> Salary </th>
+<th> Date of Joining </th>
+</tr>
+<tr *ngFor="let e of elist">
+    <td> {{e.eid}}</td>
+    <td> {{e.ename}}</td>
+    <td> {{e.salary}}</td>
+    <td> {{e.doj|date}}</td>
+     <!-- <td> <a routerLink="/edit/{{e.eid}}">Edit Data</a></td>  -->
+    <td> <input type="button" (click)="Update(e.eid)" value="Edit"/></td>
+</tr>
+</table>
+</div>

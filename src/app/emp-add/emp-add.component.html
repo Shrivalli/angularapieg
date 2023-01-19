@@ -1,0 +1,12 @@
+<div>
+    <form #empform="ngForm" (ngSubmit)="save(empform.value)" class="was-validated">
+        Eid: <input type="text" [(ngModel)]="e.eid" name="eid" #eid=ngModel required/>
+        <span class="invalid-feedback" *ngIf="eid.touched==true && eid.invalid==true"> Please enter Employee ID</span><br/>
+        Ename: <input type="text" [(ngModel)]="e.ename" name="ename" minlength="3"/> <br/>
+        Salary: <input type="number" [(ngModel)]="e.salary" #salary=ngModel name="salary" min=1000 max=5000/>
+        <span  *ngIf="salary.errors?.min"> Minimum salary should be above 1000</span><br/>
+        <span  *ngIf="salary.errors?.max"> Maximum salary should be below 5000</span>
+        Doj: <input type="date" [(ngModel)]="e.doj" name="doj"/><br/>
+        <input type="submit" value="Register" [disabled]=!empform.valid class="primary"/><br/>
+    </form>
+</div>

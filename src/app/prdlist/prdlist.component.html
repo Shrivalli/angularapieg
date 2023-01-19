@@ -1,0 +1,29 @@
+<div style="margin-top: 100px;">
+    <table class="table">
+        <thead>
+        <tr>
+            <th> Product ID </th>
+            <th> Product Name </th>
+            <th> Price </th>
+            <th> Quantity </th>
+            <th> Date of Manufacture </th>
+            <th> Supplier ID </th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of productlst">
+            <td>{{p.pid}}</td>
+            <td>{{p.pname}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.qty}}</td>
+            <td>{{p.dom|date}}</td>
+            <td>{{p.suppid}}</td>
+            <td>
+                <a routerLink="/editprd/{{p.pid}}" > Edit Product | </a>
+                <a routerLink="/deleteprd/{{p.pid}}"> Delete Product </a>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
