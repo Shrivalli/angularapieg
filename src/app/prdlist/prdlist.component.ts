@@ -31,7 +31,8 @@ message:string;
       {
       this.message="Product deleted Successfully";
     //  this.productservice.getproducts();
-       this.ngOnInit();
+      // this.ngOnInit();
+      this.productlst = this.productlst.filter(item => item.pid !=product.pid);
       console.log(this.productlst.length);
       }
       
