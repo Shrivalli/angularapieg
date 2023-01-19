@@ -9,6 +9,7 @@ import { ProductService } from '../product.service';
 })
 export class PrdlistComponent implements OnInit {
 productlst:Product[];
+message:string;
   constructor(private productservice:ProductService) { }
   
 
@@ -24,4 +25,16 @@ productlst:Product[];
     )
   }
 
+  clickMethod(product: Product) {
+    if(confirm("Are you sure to delete "+product.pname)) {
+      this.productservice.Deleteproduct(product.pid).subscribe()
+      {
+      this.message="Product deleted Successfully";
+    //  this.productservice.getproducts();
+       this.ngOnInit();
+      console.log(this.productlst.length);
+      }
+      
+    }
+  }
 }

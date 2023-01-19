@@ -1,4 +1,5 @@
 <div style="margin-top: 100px;">
+    {{message}}
     <table class="table">
         <thead>
         <tr>
@@ -21,7 +22,7 @@
             <td>{{p.suppid}}</td>
             <td>
                 <a routerLink="/editprd/{{p.pid}}" > Edit Product | </a>
-                <a routerLink="/deleteprd/{{p.pid}}"> Delete Product </a>
+                <button type=button class="btn btn-primary"  (click)="clickMethod(p)">Delete me</button>
             </td>
             </tr>
         </tbody>

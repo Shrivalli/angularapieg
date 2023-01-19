@@ -1,4 +1,5 @@
 <div>
+    <h1 *ngIf="message!=null">{{message}} </h1>
 <form #prform="ngForm" (ngSubmit)="saveproduct(prform.value)" class="was-validated">
     Enter Pid:
     <input type="number" name="pid" [(ngModel)]="p.pid" #pid=ngModel required/>
@@ -24,7 +25,8 @@
     <input type="number" name="suppid" [(ngModel)]="p.suppid" #suppid=ngModel/>
     <br/><br/>
 
-    <input type="submit" [disabled]=!prform.valid value="save Product" class="primary"/>
+    <input type="submit" [disabled]=!prform.valid  value="save Product" class="primary"/>
+    <button type="reset" > Clear </button>
     <br/><br/>
 </form>
 </div>

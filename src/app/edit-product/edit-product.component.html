@@ -1,1 +1,33 @@
-<p>edit-product works!</p>
+<div>
+    <h1 *ngIf="message!=null">{{message}} </h1>
+<form #prform="ngForm" (ngSubmit)="Update(prform.value)" class="was-validated">
+    Enter Pid:
+    <input type="number" name="pid" [(ngModel)]="p.pid" #pid=ngModel required/>
+    <span class="invalid-feedback" *ngIf="pid.touched && pid.invalid">Pid is mandatory field</span><br/><br/>
+
+    Enter Pname:
+    <input type="text" name="pname" [(ngModel)]="p.pname" #pname=ngModel minlength="5" required/>
+    <span class="invalid-feedback" *ngIf="pname.touched && pname.invalid">Product name should be minimum of 5 characters </span><br/><br/>
+
+    Enter Price:
+    <input type="number" name="price" [(ngModel)]="p.price" #price=ngModel required/>
+    <span class="invalid-feedback" *ngIf="price.touched && price.invalid">Price is mandatory </span><br/><br/>
+
+    Enter Qty:
+    <input type="number" name="qty" [(ngModel)]="p.qty" #qty=ngModel min="1" />
+    <span class="invalid-feedback" *ngIf="qty.touched && qty.invalid"> minimum value of quantity should be 1 </span><br/><br/>
+
+    Enter Date Of Manufature:
+    <input type="date" name="dom" [(ngModel)]="p.dom" #dom=ngModel />
+    <br/><br/>
+
+    Enter Supplier ID:
+    <input type="number" name="suppid" [(ngModel)]="p.suppid" #suppid=ngModel/>
+    <br/><br/>
+
+    <input type="submit" [disabled]=!prform.valid  value="Update" class="primary"/>
+    <button type="reset" > Clear </button>
+    <br/><br/>
+</form>
+</div>
+{{prform.value|json}}

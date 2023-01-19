@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Product } from 'src/Models/Product';
 
 @Injectable({
@@ -22,6 +22,59 @@ url:string="https://localhost:44396/api/Product";
     this.plist=this.httpclient.get(this.url);
     return this.plist;
   }
+
+  getproduct(id:string):Observable<Product>
+  {
+    return this.httpclient.get<Product>(this.url+"/GetProdById?id="+id);
+  }
+  addproduct(p:Product):Observable<Product>
+  {
+    return this.httpclient.post<Product>(this.url,p,{
+      headers:new HttpHeaders({
+        'Content-Type':'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Method':'*'
+        
+      })
+    });
+  }
+
+    Editproduct(id:number,p:Product):Observable<Product>
+  {
+    return this.httpclient.put<Product>(this.url+"?id="+id,p,{
+      headers:new HttpHeaders({
+        'Content-Type':'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Method':'*'
+        
+      })
+    });
+  }
     
+  Deleteproduct(id:number):Observable<Product>
+  {
+    return this.httpclient.delete<Product>(this.url+"?id="+id,{
+      headers:new HttpHeaders({
+        'Content-Type':'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Method':'*'
+        
+      })
+      
+    });
+    this.getproducts();
+  }
+
+  private manageError(err_response:HttpErrorResponse)
+  {
+    if(err_response.error instanceof ErrorEvent)
+    console.error('Client Side Error:',err_response.error.message);
+    else
+    console.error('Server Side Error:',err_response);
+
+    return throwError('There is a little problem while processing your request.Sorry for the inconvenience');
+    
+  }
+
 }
 
