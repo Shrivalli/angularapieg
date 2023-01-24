@@ -16,13 +16,19 @@ message:string;
 
 
   ngOnInit(): void {
+    if(localStorage.getItem("token")!=null)
+    {
+    
     this.productservice.getproducts().subscribe(
       data=>{
         this.productlst=data;
         console.log(this.productlst);
-      }
-      
-    )
+      });
+    } 
+    
+    else{
+      console.log('sorry u have not logged in');
+    }
   }
 
   clickMethod(product: Product) {
@@ -30,8 +36,6 @@ message:string;
       this.productservice.Deleteproduct(product.pid).subscribe()
       {
       this.message="Product deleted Successfully";
-    //  this.productservice.getproducts();
-      // this.ngOnInit();
       this.productlst = this.productlst.filter(item => item.pid !=product.pid);
       console.log(this.productlst.length);
       }

@@ -27,8 +27,4 @@ message:string;
     console.log(this.p);
   }
 
-  clear()
-  {
-    
-  }
 }

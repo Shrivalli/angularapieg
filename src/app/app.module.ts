@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +13,7 @@ import { EditempComponent } from './editemp/editemp.component';
 import { PrdlistComponent } from './prdlist/prdlist.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +34,13 @@ import { DeleteProductComponent } from './delete-product/delete-product.componen
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: InterceptorService,
+    //   multi: true
+    //  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
